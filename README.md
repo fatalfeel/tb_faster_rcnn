@@ -5,7 +5,7 @@
 - You can debug any line in cpu mode
 
 ## Prepare install
-- cd faster_rcnn_pytorch
+- cd tb_faster_rcnn
 - ./install_data.sh
 
 ## Run
