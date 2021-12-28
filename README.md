@@ -20,6 +20,10 @@
 - Train 2.3 frames per second
 - Infer 3 frames per second
 
+## Pretrained 35 epochs download
+- https://drive.google.com/file/d/1cWgVyKYmAA8TxtVWQEdURvKGWK-DnWyt
+- Copy to ./checkpoint & Rename to model-last.pt
+
 ## Web site
 - http://fatalfeel.blogspot.com/2013/12/faster-rcnn-in-pytorch.html
 
