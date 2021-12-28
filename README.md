@@ -15,6 +15,7 @@
 - python3 ./train.py --cuda True
 - python3 ./train.py --cuda True --resume True
 - python3 ./infer.py --cuda True
+- python3 ./eval.py --cuda True
 
 ## Performance
 - GeForce GTX 1650 4GB
@@ -23,7 +24,7 @@
 - Train 2.3 frames per second
 - Infer 3 frames per second
 
-## Pretrained 20 epochs download
+## Pretrained download. At 31 epochs meanAP is 0.7653
 - https://drive.google.com/file/d/1cWgVyKYmAA8TxtVWQEdURvKGWK-DnWyt
 - Copy to ./checkpoint & Rename to model-last.pt
 
