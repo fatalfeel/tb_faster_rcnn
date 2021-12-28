@@ -16,6 +16,7 @@ class GenerateTool(object):
                  post_nms_top_n:    int):
 
         self.num_classes                = num_classes
+        self.op_nms                     = ops.nms
         #self._anchor_ratios             = np.array(anchor_ratios, dtype=np.float64)
         #self._anchor_sizes              = np.array(anchor_sizes,  dtype=np.float64) #16 * scale[8, 16, 32]
         self._anchor_ratios             = torch.from_numpy(np.array(anchor_ratios)).float()
@@ -89,7 +90,7 @@ class GenerateTool(object):
         for batch_index in range(batch_size):
             sorted_bboxes   = proposal_bboxes[batch_index][sorted_indices[batch_index]][:self._pre_nms_top_n]
             sorted_probs    = proposal_fg_probs[batch_index][sorted_indices[batch_index]][:self._pre_nms_top_n]
-            kept_indices    = ops.nms(sorted_bboxes, sorted_probs, threshold)
+            kept_indices    = self.op_nms(sorted_bboxes, sorted_probs, threshold)
             nms_bboxes      = sorted_bboxes[kept_indices][:self._post_nms_top_n] #keep the most is 2000 bboxes
             nms_proposal_bboxes_batch.append(nms_bboxes)
 
@@ -134,8 +135,7 @@ class GenerateTool(object):
             for c in range(1, self.num_classes):
                 class_bboxes = detection_bboxes[batch_index, :, c, :]
                 class_probs = detection_probs[batch_index, :, c]
-                # kept_indices = nms(class_bboxes, class_probs, threshold)
-                kept_indices    = ops.nms(class_bboxes, class_probs, threshold)
+                kept_indices    = self.op_nms(class_bboxes, class_probs, threshold)
                 class_bboxes    = class_bboxes[kept_indices]
                 class_probs     = class_probs[kept_indices]
 
