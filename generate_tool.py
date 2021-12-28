@@ -89,7 +89,6 @@ class GenerateTool(object):
         for batch_index in range(batch_size):
             sorted_bboxes   = proposal_bboxes[batch_index][sorted_indices[batch_index]][:self._pre_nms_top_n]
             sorted_probs    = proposal_fg_probs[batch_index][sorted_indices[batch_index]][:self._pre_nms_top_n]
-            #kept_indices = nms(sorted_bboxes, sorted_probs, threshold)
             kept_indices    = ops.nms(sorted_bboxes, sorted_probs, threshold)
             nms_bboxes      = sorted_bboxes[kept_indices][:self._post_nms_top_n] #keep the most is 2000 bboxes
             nms_proposal_bboxes_batch.append(nms_bboxes)
