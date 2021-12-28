@@ -4,8 +4,8 @@
 - Comment in many functions
 - You can debug any line in cpu mode
 
-# A.I. detect demo
-<img src="images/real.jpg" width="480px"/> <img src="images/aidetect.gif" width="480px"/>
+# Demo: Real vs AI Detect
+<img src="images/real.jpg" width="400px"/> <img src="images/aidetect.jpg" width="400px"/>
 
 ## Prepare install
 - cd tb_faster_rcnn
