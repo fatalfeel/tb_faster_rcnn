@@ -24,9 +24,10 @@
 - Train 2.3 frames per second
 - Infer 3 frames per second
 
-## Pretrained download at 31 epochs meanAP is 0.7653
+## Pretrained download
 - https://drive.google.com/file/d/1cWgVyKYmAA8TxtVWQEdURvKGWK-DnWyt
 - Copy to ./checkpoint & Rename to model-last.pt
+- meanAP is 0.7653 at 31 epochs
 
 ## Web site
 - http://fatalfeel.blogspot.com/2013/12/faster-rcnn-in-pytorch.html
