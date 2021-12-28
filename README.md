@@ -24,7 +24,7 @@
 - Train 2.3 frames per second
 - Infer 3 frames per second
 
-## Pretrained download. At 31 epochs meanAP is 0.7653
+## Pretrained download at 31 epochs meanAP is 0.7653
 - https://drive.google.com/file/d/1cWgVyKYmAA8TxtVWQEdURvKGWK-DnWyt
 - Copy to ./checkpoint & Rename to model-last.pt
 
