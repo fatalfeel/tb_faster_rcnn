@@ -4,7 +4,7 @@
 - Comment in many functions
 - You can debug any line in cpu mode
 
-# Demo: Real vs AI Detect
+# Demo: Real vs AI-Detect
 <img src="images/real.jpg" width="400px"/> <img src="images/aidetect.jpg" width="400px"/>
 
 ## Prepare install
@@ -23,7 +23,7 @@
 - Train 2.3 frames per second
 - Infer 3 frames per second
 
-## Pretrained 35 epochs download
+## Pretrained 20 epochs download
 - https://drive.google.com/file/d/1cWgVyKYmAA8TxtVWQEdURvKGWK-DnWyt
 - Copy to ./checkpoint & Rename to model-last.pt
 
