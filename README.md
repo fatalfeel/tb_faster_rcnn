@@ -1,4 +1,4 @@
-# TB-Faster-Rcnn in Pytorch
+# TB X-ray Faster-Rcnn in Pytorch
 - An implementation of [Faster R-CNN](https://arxiv.org/pdf/1506.01497.pdf) in PyTorch.
 - Only python source. These is no need to compile nms and roialign cpp
 - Comment in many functions
