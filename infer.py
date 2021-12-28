@@ -78,7 +78,7 @@ def _infer(path_to_input_image: str, path_to_output_image: str, dataset_name: st
             category    = dataset_class.LABEL_TO_CATEGORY_DICT[dtclass]
 
             draw.rectangle(((bbox.left, bbox.top), (bbox.right, bbox.bottom)), outline=color)
-            draw.text((bbox.left, bbox.top), text=f'{category:s} {prob:.3f}', fill=color)
+            draw.text((bbox.left, bbox.top), text=f'{category:s} {prob:.4f}', fill=color)
 
         image.save(path_to_output_image)
         print(f'Output image save to {path_to_output_image}')
