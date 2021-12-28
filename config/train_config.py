@@ -9,16 +9,16 @@ class TrainConfig(Config):
 
     LEARNING_RATE: float        = 0.001
     MOMENTUM: float             = 0.9
-    WEIGHT_DECAY: float         = 0.0002 #avoid too fit
+    WEIGHT_DECAY: float         = 0.0002    #avoid too fit
     #STEP_LR_SIZES: List[int]    = [50000, 70000]
-    EPOCH_LR_FREQ: [int]        = 10
+    UPDATE_LR_FREQ: [int]       = 10        #each epoch
     STEP_LR_GAMMA: float        = 0.999
     #WARM_UP_FACTOR: float       = 0.3333
     #WARM_UP_NUM_ITERS: int      = 500
 
     NUM_STEPS_TO_DISPLAY: int   = 20
     NUM_SAVE_EPOCH_FREQ: int    = 5
-    NUM_EPOCH_TO_FINISH: int    = 20
+    NUM_EPOCH_TO_FINISH: int    = 30
 
     ANCHOR_SMOOTH_L1_LOSS_BETA: float   = 1.0
     PROPOSAL_SMOOTH_L1_LOSS_BETA: float = 1.0
@@ -39,7 +39,7 @@ class TrainConfig(Config):
               momentum: float = None,
               weight_decay: float = None,
               #step_lr_sizes: List[int] = None,
-              epoch_lr_freq: int = None,
+              update_lr_freq: int = None,
               step_lr_gamma: float = None,
               #warm_up_factor: float = None,
               #warm_up_num_iters: int = None,
@@ -67,8 +67,8 @@ class TrainConfig(Config):
             cls.WEIGHT_DECAY = weight_decay
         #if step_lr_sizes is not None:
         #    cls.STEP_LR_SIZES = ast.literal_eval(step_lr_sizes)
-        if epoch_lr_freq is not None:
-           cls.EPOCH_LR_FREQ = epoch_lr_freq
+        if update_lr_freq is not None:
+           cls.UPDATE_LR_FREQ = update_lr_freq
         if step_lr_gamma is not None:
             cls.STEP_LR_GAMMA = step_lr_gamma
         #if warm_up_factor is not None:

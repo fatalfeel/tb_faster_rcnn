@@ -41,7 +41,7 @@ parser.add_argument('--learning_rate',                  type=float,             
 parser.add_argument('--momentum',                       type=float,                             help='default: {:g}'.format(Config.MOMENTUM))
 parser.add_argument('--weight_decay',                   type=float,                             help='default: {:g}'.format(Config.WEIGHT_DECAY))
 #parser.add_argument('--step_lr_sizes',                  type=str,                               help='default: {!s}'.format(Config.STEP_LR_SIZES))
-parser.add_argument('--epoch_lr_freq',                  type=str,                               help='default: {!s}'.format(Config.EPOCH_LR_FREQ))
+parser.add_argument('--update_lr_freq',                 type=str,                               help='default: {!s}'.format(Config.UPDATE_LR_FREQ))
 parser.add_argument('--step_lr_gamma',                  type=float,                             help='default: {:g}'.format(Config.STEP_LR_GAMMA))
 #parser.add_argument('--warm_up_factor',                 type=float,                             help='default: {:g}'.format(Config.WARM_UP_FACTOR))
 #parser.add_argument('--warm_up_num_iters',              type=int,                               help='default: {:d}'.format(Config.WARM_UP_NUM_ITERS))
@@ -122,7 +122,7 @@ def _train():
 
     optimizer = optim.SGD(model.parameters(), lr=Config.LEARNING_RATE, momentum=Config.MOMENTUM, weight_decay=Config.WEIGHT_DECAY)
     #scheduler = WarmUpMultiStepLR(optimizer, milestones=Config.STEP_LR_SIZES, gamma=Config.STEP_LR_GAMMA, factor=Config.WARM_UP_FACTOR, num_iters=Config.WARM_UP_NUM_ITERS)
-    scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=int(sample_size/Config.EPOCH_LR_FREQ), gamma=Config.STEP_LR_GAMMA)
+    scheduler = optim.lr_scheduler.StepLR(optimizer, step_size=int(sample_size/Config.UPDATE_LR_FREQ), gamma=Config.STEP_LR_GAMMA)
 
     num_steps_to_display    = Config.NUM_STEPS_TO_DISPLAY
     num_save_epoch_freq     = Config.NUM_SAVE_EPOCH_FREQ
@@ -211,7 +211,7 @@ if __name__ == '__main__':
                  momentum=args.momentum,
                  weight_decay=args.weight_decay,
                  #step_lr_sizes=args.step_lr_sizes,
-                 epoch_lr_freq=args.epoch_lr_freq,
+                 update_lr_freq=args.update_lr_freq,
                  step_lr_gamma=args.step_lr_gamma,
                  #warm_up_factor=args.warm_up_factor,
                  #warm_up_num_iters=args.warm_up_num_iters,
