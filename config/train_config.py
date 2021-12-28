@@ -9,7 +9,7 @@ class TrainConfig(Config):
 
     LEARNING_RATE: float        = 0.001
     MOMENTUM: float             = 0.9
-    WEIGHT_DECAY: float         = 0.0001 #avoid too fit
+    WEIGHT_DECAY: float         = 0.0002 #avoid too fit
     #STEP_LR_SIZES: List[int]    = [50000, 70000]
     EPOCH_LR_FREQ: [int]        = 10
     STEP_LR_GAMMA: float        = 0.999
