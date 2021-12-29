@@ -4,7 +4,6 @@
 - Comment in many functions
 - [Pycharm IDE](https://www.jetbrains.com/pycharm/download/other.html) can set breakpoint in any line on cpu mode
 - If you want to debug on cuda mode set kwargs={} in train.py
-- Using voc2007.py to ready your dataset
 
 # Demo: Real vs AI-Detect
 <img src="images/real.jpg" width="400px"/> <img src="images/aidetect.jpg" width="400px"/>
@@ -30,6 +29,19 @@
 - https://drive.google.com/file/d/1cWgVyKYmAA8TxtVWQEdURvKGWK-DnWyt
 - Copy to ./checkpoint & Rename to model-last.pt
 - Pretrained meanAP is 0.7653 at 31 epochs
+
+# Tutorial to data preparation
+- You can add [class name] in CATEGORY_TO_LABEL_DICT of voc2007.py
+- [class name] under "name" tag in ./data/VOCdevkit/VOC2007/Annotations/*.xml
+- sudo apt install libxcb-xinerama0 && pip3 install labelImg && labelImg then edit image label
+- Tag format expain in [VOC2007](https://towardsdatascience.com/coco-data-format-for-object-detection-a4c5eaf518c5)
+
+# Train skill
+- Minimum loss not indicate high accuracy
+- WEIGHT_DECAY avoid too fit. The bigger weight, the more attenuation
+- UPDATE_LR_FREQ is learning rate attenuation times in each epoch 
+- If your hard disk big enough set NUM_SAVE_EPOCH_FREQ = 1
+- Rename 10~30 checkpoint one after one to model-last.pt and run eval.py to get the maximum meanAP and minimum loss
 
 ## Web site
 - http://fatalfeel.blogspot.com/2013/12/faster-rcnn-in-pytorch.html
