@@ -102,8 +102,7 @@ class RegionProposalNetwork(nn.Module):
             selected_indices    = fgbg_samples[selected_rand].unbind(dim=1)
 
             inside_anchor_gen_bboxes    = inside_anchor_gen_bboxes[selected_indices]
-            #gt_bboxes                  = gt_bboxes_batch[selected_indices[0], anchor_assignments[selected_indices]]
-            gt_bboxes                   = gt_bboxes_batch[0, anchor_assignments[selected_indices]]  #select gt boxes
+            gt_bboxes                   = gt_bboxes_batch[selected_indices[0], anchor_assignments[selected_indices]]
             gt_anchor_labels            = labels[selected_indices]
             gt_anchor_offset            = BBox.offset_from_gt_center(inside_anchor_gen_bboxes, gt_bboxes)
             batch_indices               = selected_indices[0]
