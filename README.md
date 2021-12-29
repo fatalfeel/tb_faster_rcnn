@@ -2,7 +2,7 @@
 - An implementation of [Faster R-CNN](https://arxiv.org/pdf/1506.01497.pdf) in PyTorch.
 - Only python source. These is no need to compile nms and roialign cpp
 - Comment in many functions
-- Using Pycharm on cpu mode you can set breakpoint in any line
+- Pycharm IDE can set breakpoint in any line on cpu mode
 - If you want to debug on cuda mode set kwargs = {}
 - Using voc2007.py to ready your dataset
 
