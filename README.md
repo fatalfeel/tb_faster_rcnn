@@ -2,7 +2,9 @@
 - An implementation of [Faster R-CNN](https://arxiv.org/pdf/1506.01497.pdf) in PyTorch.
 - Only python source. These is no need to compile nms and roialign cpp
 - Comment in many functions
-- You can debug any line in cpu mode
+- Using Pycharm on cpu mode you can set breakpoint in any line
+- If you want to debug on cuda mode set kwargs = {}
+- Using voc2007.py to ready your dataset
 
 # Demo: Real vs AI-Detect
 <img src="images/real.jpg" width="400px"/> <img src="images/aidetect.jpg" width="400px"/>
@@ -27,7 +29,7 @@
 ## Pretrained download
 - https://drive.google.com/file/d/1cWgVyKYmAA8TxtVWQEdURvKGWK-DnWyt
 - Copy to ./checkpoint & Rename to model-last.pt
-- meanAP is 0.7653 at 31 epochs
+- Pretrained meanAP is 0.7653 at 31 epochs
 
 ## Web site
 - http://fatalfeel.blogspot.com/2013/12/faster-rcnn-in-pytorch.html
