@@ -5,7 +5,7 @@ from config.config import Config
 class TrainConfig(Config):
     RPN_PRE_NMS_TOP_N: int      = 12000 #smaller can do faster
     RPN_POST_NMS_TOP_N: int     = 2000  #smaller can do faster
-    BATCH_SIZE: int             = 1     #modify this need change gt_bboxes_batch & gt_labels_batch
+    BATCH_SIZE: int             = 1
 
     LEARNING_RATE: float        = 0.001
     MOMENTUM: float             = 0.9

@@ -69,25 +69,20 @@ class Detection(nn.Module):
 
         if self.training:
             # find labels for each `proposal_gen_bboxes`
-            labels = torch.full((batch_size, proposal_gen_bboxes.shape[1]), -1, dtype=torch.long, device=proposal_gen_bboxes.device)
-            ious = BBox.getIoUs(proposal_gen_bboxes, gt_bboxes_batch)
+            labels  = torch.full((batch_size, proposal_gen_bboxes.shape[1]), -1, dtype=torch.long, device=proposal_gen_bboxes.device)
+            ious    = BBox.getIoUs(proposal_gen_bboxes, gt_bboxes_batch)
             proposal_max_ious, proposal_assignments = ious.max(dim=2) #row max value, column index
             labels[proposal_max_ious < 0.5] = 0
             fg_masks = (proposal_max_ious >= 0.5)
 
             #if len(fg_masks.nonzero()) > 0:
             #    labels[fg_masks] = gt_labels_batch[fg_masks.nonzero()[:, 0], proposal_assignments[fg_masks]]
-            #fg_indices = torch.nonzero(fg_masks)                       # get ture row_index, col_index of fg_masks
-            #if len(fg_indices) > 0:                                    # make sure there is true index to process
-            #morethan_p5_row     = fg_indices[:, 0]                      # > 0.5 row index
-            morethan_p5_col     = proposal_assignments[fg_masks]        # if fg_masks is ture then give column index
-            #gt_match_class      = gt_labels_batch[morethan_p5_row, morethan_p5_col]
-            gt_match_class      = gt_labels_batch[0, morethan_p5_col]   #col pick class in gt_labels_batch
-            labels[fg_masks]    = gt_match_class                        #if fg_masks is ture then give gt_class number
-
-            '''for i in range(gt_match_class2.size(0)):
-                if gt_match_class[i] != gt_match_class2[i]:
-                    print('error')'''
+            true_indices = torch.nonzero(fg_masks)                                      # get row col of ture fg_masks
+            if len(true_indices) > 0:                                                   # make sure there is true index to process
+                morethan_p5_row     = true_indices[:, 0]                                # row index
+                morethan_p5_col     = proposal_assignments[fg_masks]                    # if fg_masks is ture then give column index
+                gt_match_class      = gt_labels_batch[morethan_p5_row, morethan_p5_col]
+                labels[fg_masks]    = gt_match_class                                    #if fg_masks is ture then give gt_class number
 
             # select 128 x `batch_size` samples
             '''
