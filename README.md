@@ -3,7 +3,7 @@
 - Only python source. These is no need to compile nms and roialign cpp
 - Comment in many functions
 - [Pycharm IDE](https://www.jetbrains.com/pycharm/download/other.html) can set breakpoint in any line on cpu mode
-- If you want to debug on cuda mode set kwargs = {} in train.py
+- If you want to debug on cuda mode set kwargs={} in train.py
 - Using voc2007.py to ready your dataset
 
 # Demo: Real vs AI-Detect
