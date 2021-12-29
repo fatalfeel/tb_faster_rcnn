@@ -29,6 +29,7 @@
 - https://drive.google.com/file/d/1cWgVyKYmAA8TxtVWQEdURvKGWK-DnWyt
 - Copy to ./checkpoint & Rename to model-last.pt
 - Pretrained meanAP is 0.7653 at 31 epochs
+- <img src="images/meanap.jpg" width="400px"/>
 
 # Data preparation tutorials
 - You can add [class name] in CATEGORY_TO_LABEL_DICT of voc2007.py
