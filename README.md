@@ -19,11 +19,12 @@
 - python3 ./eval.py --cuda True
 
 ## Performance
-- GeForce GTX 1650 4GB
+- Intel I7-3770K(118US$) + GeForce GTX 1650 4GB(220US$)
+- Ubuntu 16.04 + Python 3.7.9(manually compile update)
 - CUDA version 10.2
 - Resnet-101
 - Train 2.3 frames per second
-- Infer 3 frames per second
+- Infer 2.7 frames per second
 
 ## Pretrained download
 - https://drive.google.com/file/d/1cWgVyKYmAA8TxtVWQEdURvKGWK-DnWyt
