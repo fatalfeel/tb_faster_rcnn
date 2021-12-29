@@ -33,9 +33,9 @@
 
 # Data preparation tutorials
 - You can add [class name] in CATEGORY_TO_LABEL_DICT of voc2007.py
-- [class name] under "name" tag in ./data/VOCdevkit/VOC2007/Annotations/*.xml
-- sudo apt install libxcb-xinerama0 && pip3 install labelImg && labelImg then edit image label
-- Tag format expain in [VOC2007](https://towardsdatascience.com/coco-data-format-for-object-detection-a4c5eaf518c5)
+- [class name] also under "name" tag in ./data/VOCdevkit/VOC2007/Annotations/*.xml
+- sudo apt install libxcb-xinerama0 && pip3 install labelImg && labelImg can edit image label
+- Tag format explain in [VOC2007](https://towardsdatascience.com/coco-data-format-for-object-detection-a4c5eaf518c5)
 
 # Train skill
 - Minimum loss not indicate high accuracy
