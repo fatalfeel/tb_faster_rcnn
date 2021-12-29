@@ -1,1 +1,1 @@
-put *.pth in checkpoint
+put *.pt in checkpoint
