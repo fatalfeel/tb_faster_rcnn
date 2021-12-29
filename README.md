@@ -49,3 +49,4 @@
 ## Refer to
 - https://www.kaggle.com/zeeshanshaik75/tb800imagesmasks
 - https://www.mediafire.com/file/r5j10i5b4068feb/Yet-Another-EfficientDet-Pytorch-voc2007.tar.gz
+- thanks potterhsu0818@gmail.com for code base
