@@ -30,7 +30,7 @@
 - Copy to ./checkpoint & Rename to model-last.pt
 - Pretrained meanAP is 0.7653 at 31 epochs
 
-# Tutorial to data preparation
+# Data preparation tutorials
 - You can add [class name] in CATEGORY_TO_LABEL_DICT of voc2007.py
 - [class name] under "name" tag in ./data/VOCdevkit/VOC2007/Annotations/*.xml
 - sudo apt install libxcb-xinerama0 && pip3 install labelImg && labelImg then edit image label
