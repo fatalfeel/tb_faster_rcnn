@@ -20,7 +20,7 @@
 
 ## Performance
 - Intel I7-3770K(118US$) + GeForce GTX 1650 4GB(220US$)
-- Ubuntu 16.04 + Python 3.7.9(manually compile update)
+- Ubuntu 16.04 + Python 3.7.9
 - CUDA version 10.2
 - Resnet-101
 - Train 2.3 frames per second
@@ -47,6 +47,7 @@
 
 ## Web site
 - http://fatalfeel.blogspot.com/2013/12/faster-rcnn-in-pytorch.html
+- http://fatalfeel.blogspot.com/2019/12/ai-with-cuda-install-step-and-yolov3-in.html
 
 ## Refer to
 - https://www.kaggle.com/zeeshanshaik75/tb800imagesmasks
