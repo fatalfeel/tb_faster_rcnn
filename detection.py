@@ -77,12 +77,14 @@ class Detection(nn.Module):
 
             #if len(fg_masks.nonzero()) > 0:
             #    labels[fg_masks] = gt_labels_batch[fg_masks.nonzero()[:, 0], proposal_assignments[fg_masks]]
-            true_indices = torch.nonzero(fg_masks)                                      # get row col of ture fg_masks
-            if len(true_indices) > 0:                                                   # make sure there is true index to process
-                morethan_p5_row     = true_indices[:, 0]                                # row index
-                morethan_p5_col     = proposal_assignments[fg_masks]                    # if fg_masks is ture then give column index
-                gt_match_class      = gt_labels_batch[morethan_p5_row, morethan_p5_col]
-                labels[fg_masks]    = gt_match_class                                    #if fg_masks is ture then give gt_class number
+            true_indices = torch.nonzero(fg_masks)                                              # get row col of ture fg_masks
+            if len(true_indices) > 0:                                                           # make sure there is true index to process
+                morethan_p5_row     = true_indices[:, 0]                                        # row index
+                #proposal_iou_col   = proposal_assignments[fg_masks]                            # if fg_masks is ture then give column index
+                morethan_p5_col     = true_indices[:, 1]
+                proposal_iou_col    = proposal_assignments[morethan_p5_row, morethan_p5_col]    #same as proposal_assignments[fg_masks] but faster
+                gt_match_class      = gt_labels_batch[morethan_p5_row, proposal_iou_col]
+                labels[fg_masks]    = gt_match_class                                            #if fg_masks is ture then give gt_class number
 
             # select 128 x `batch_size` samples
             '''
@@ -111,7 +113,7 @@ class Detection(nn.Module):
             selected_indices    = fgbg_samples[selected_rand].unbind(dim=1)
 
             proposal_gen_bboxes = proposal_gen_bboxes[selected_indices]
-            gt_bboxes           = gt_bboxes_batch[selected_indices[0], proposal_assignments[selected_indices]]
+            gt_bboxes           = gt_bboxes_batch[selected_indices[0], proposal_assignments[selected_indices]] #row=selected_indices[0], col=selected_indices[1]
             gt_proposal_classes = labels[selected_indices]
             gt_proposal_offset  = BBox.offset_from_gt_center(proposal_gen_bboxes, gt_bboxes)
             batch_indices       = selected_indices[0]
