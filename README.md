@@ -23,7 +23,7 @@
 - Ubuntu 16.04 + Python 3.7.9
 - CUDA version 10.2
 - Resnet-101
-- Train 2.3 frames per second
+- Train 2.6 frames per second
 - Infer 2.7 frames per second
 
 ## Pretrained download
