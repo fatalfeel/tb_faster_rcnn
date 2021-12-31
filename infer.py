@@ -73,7 +73,7 @@ def _infer(path_to_input_image: str, path_to_output_image: str, dataset_name: st
         draw = ImageDraw.Draw(image)
 
         for bbox, dtclass, prob in zip(detection_bboxes.tolist(), detection_classes.tolist(), detection_probs.tolist()):
-            color       = random.choice(['red', 'green', 'blue', 'yellow', 'purple', 'white'])
+            color       = random.choice(['blue', 'yellow', 'white'])
             bbox        = BBox(left=bbox[0], top=bbox[1], right=bbox[2], bottom=bbox[3])
             category    = dataset_class.LABEL_TO_CATEGORY_DICT[dtclass]
 
