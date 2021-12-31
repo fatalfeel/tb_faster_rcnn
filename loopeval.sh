@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for i in {20..30}
+for i in `seq $1 $2`
 do
 	echo "--------------------start eval model-$i.pt--------------------"
 	rm -f ./checkpoint/model-last.pt
