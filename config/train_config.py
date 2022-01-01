@@ -18,7 +18,7 @@ class TrainConfig(Config):
 
     NUM_STEPS_TO_DISPLAY: int   = 20
     NUM_SAVE_EPOCH_FREQ: int    = 5
-    NUM_EPOCH_TO_FINISH: int    = 30
+    NUM_EPOCH_TO_FINISH: int    = 35
 
     ANCHOR_SMOOTH_L1_LOSS_BETA: float   = 1.0
     PROPOSAL_SMOOTH_L1_LOSS_BETA: float = 1.0
