@@ -29,7 +29,7 @@
 ## Pretrained download
 - https://drive.google.com/file/d/1cWgVyKYmAA8TxtVWQEdURvKGWK-DnWyt
 - Copy to ./checkpoint & Rename to model-last.pt
-- Pretrained meanAP is 0.7701 at 28 epochs
+- After training 699 samples at 28 epochs meanAP is 0.7701
 - <img src="images/meanap.jpg" width="400px"/>
 
 # Data preparation tutorials
