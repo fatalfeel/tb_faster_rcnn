@@ -95,7 +95,7 @@ if __name__ == '__main__':
     backbone_name           = args.backbone
     prob_thresh             = args.probability_threshold
 
-    os.makedirs(os.path.join(os.path.curdir, os.path.dirname(path_to_output_image)), exist_ok=True)
+    os.makedirs(path_to_output_image, exist_ok=True)
 
     Config.setup(image_min_side=args.image_min_side,
                  image_max_side=args.image_max_side,
