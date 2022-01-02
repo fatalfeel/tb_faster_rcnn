@@ -11,6 +11,7 @@
 ## Prepare install
 - cd tb_faster_rcnn
 - ./install_data.sh
+- mirror site: https://www.mediafire.com/file/j6j3414nb6pye5b/tb_data.tar.gz
 
 ## Run
 - python3 ./train.py --cuda True
