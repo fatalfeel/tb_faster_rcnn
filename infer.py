@@ -19,20 +19,20 @@ def str2bool(b_str):
         return False
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset',                type=str,   default='voc2007',      help='name of dataset')
-parser.add_argument('--backbone',               type=str,   default='resnet101',    help='resnet18, resnet50, resnet101')
-parser.add_argument('--checkpoint_dir',         type=str,   default='./checkpoint', help='path to checkpoint')
-parser.add_argument('--probability_threshold',  type=float, default=0.5,            help='threshold of detection probability')
-parser.add_argument('--image_min_side',         type=float, help='default: {:g}'.format(Config.IMAGE_MIN_SIDE))
-parser.add_argument('--image_max_side',         type=float, help='default: {:g}'.format(Config.IMAGE_MAX_SIDE))
-parser.add_argument('--anchor_ratios',          type=str,   help='default: "{!s}"'.format(Config.ANCHOR_RATIOS))
-parser.add_argument('--anchor_sizes',           type=str,   help='default: "{!s}"'.format(Config.ANCHOR_SIZES))
-#parser.add_argument('--pooler_mode', type=str, choices=Pooler.OPTIONS, help='default: {.value:s}'.format(Config.POOLER_MODE))
-parser.add_argument('--rpn_pre_nms_top_n',      type=int,   help='default: {:d}'.format(Config.RPN_PRE_NMS_TOP_N))
-parser.add_argument('--rpn_post_nms_top_n',     type=int,   help='default: {:d}'.format(Config.RPN_POST_NMS_TOP_N))
-parser.add_argument('--input',  type=str,       default='./input/test.png',     help='path to input image')
-parser.add_argument('--output', type=str,       default='./output/result.jpg',  help='path to output result image')
-parser.add_argument('--cuda',   type=str2bool,  default=False)
+parser.add_argument('--dataset',                type=str,       default='voc2007',      help='name of dataset')
+parser.add_argument('--backbone',               type=str,       default='resnet101',    help='resnet18, resnet50, resnet101')
+parser.add_argument('--checkpoint_dir',         type=str,       default='./checkpoint', help='path to checkpoint')
+parser.add_argument('--probability_threshold',  type=float,     default=0.5,            help='threshold of detection probability')
+parser.add_argument('--image_min_side',         type=float,                             help='default: {:g}'.format(Config.IMAGE_MIN_SIDE))
+parser.add_argument('--image_max_side',         type=float,                             help='default: {:g}'.format(Config.IMAGE_MAX_SIDE))
+parser.add_argument('--anchor_ratios',          type=str,                               help='default: "{!s}"'.format(Config.ANCHOR_RATIOS))
+parser.add_argument('--anchor_sizes',           type=str,                               help='default: "{!s}"'.format(Config.ANCHOR_SIZES))
+#parser.add_argument('--pooler_mode',           type=str,       choices=Pooler.OPTIONS, help='default: {.value:s}'.format(Config.POOLER_MODE))
+parser.add_argument('--rpn_pre_nms_top_n',      type=int,                               help='default: {:d}'.format(Config.RPN_PRE_NMS_TOP_N))
+parser.add_argument('--rpn_post_nms_top_n',     type=int,                               help='default: {:d}'.format(Config.RPN_POST_NMS_TOP_N))
+parser.add_argument('--input',                  type=str,       default='./input',      help='path to input image')
+parser.add_argument('--output',                 type=str,       default='./output',     help='path to output result image')
+parser.add_argument('--cuda',                   type=str2bool,  default=False)
 args = parser.parse_args()
 
 def _infer(path_to_input_image: str, path_to_output_image: str, dataset_name: str, backbone_name: str, prob_thresh: float):
@@ -51,38 +51,42 @@ def _infer(path_to_input_image: str, path_to_output_image: str, dataset_name: st
 
     model.load(args.checkpoint_dir)
 
-    with torch.no_grad():
-        image               = transforms.Image.open(path_to_input_image)
-        image_tensor, scale = dataset_class.preprocess(image, Config.IMAGE_MIN_SIDE, Config.IMAGE_MAX_SIDE)
+    start_time = time.time_ns()
 
-        start_time          = time.time_ns()
+    for _, filename in enumerate(os.listdir(path_to_input_image)):
+        with torch.no_grad():
+            inputname           = path_to_input_image + '/' + filename
+            outputname          = path_to_output_image + '/' + filename
+            image               = transforms.Image.open(inputname)
+            image_tensor, scale = dataset_class.preprocess(image, Config.IMAGE_MIN_SIDE, Config.IMAGE_MAX_SIDE)
 
-        detection_bboxes, \
-        detection_classes, \
-        detection_probs, _  = model.eval().forward(image_tensor.unsqueeze(dim=0).to(device))
+            detection_bboxes, \
+            detection_classes, \
+            detection_probs, _  = model.eval().forward(image_tensor.unsqueeze(dim=0).to(device))
 
-        eval_fps            = 1000000000.0 / (time.time_ns() - start_time)
+            detection_bboxes   /= scale
 
-        detection_bboxes   /= scale
+            kept_indices        = (detection_probs > prob_thresh)
+            detection_bboxes    = detection_bboxes[kept_indices]
+            detection_classes   = detection_classes[kept_indices]
+            detection_probs     = detection_probs[kept_indices]
 
-        kept_indices        = (detection_probs > prob_thresh)
-        detection_bboxes    = detection_bboxes[kept_indices]
-        detection_classes   = detection_classes[kept_indices]
-        detection_probs     = detection_probs[kept_indices]
+            draw = ImageDraw.Draw(image)
 
-        draw = ImageDraw.Draw(image)
+            for bbox, dtclass, prob in zip(detection_bboxes.tolist(), detection_classes.tolist(), detection_probs.tolist()):
+                color       = random.choice(['blue', 'yellow', 'white'])
+                bbox        = BBox(left=bbox[0], top=bbox[1], right=bbox[2], bottom=bbox[3])
+                category    = dataset_class.LABEL_TO_CATEGORY_DICT[dtclass]
 
-        for bbox, dtclass, prob in zip(detection_bboxes.tolist(), detection_classes.tolist(), detection_probs.tolist()):
-            color       = random.choice(['blue', 'yellow', 'white'])
-            bbox        = BBox(left=bbox[0], top=bbox[1], right=bbox[2], bottom=bbox[3])
-            category    = dataset_class.LABEL_TO_CATEGORY_DICT[dtclass]
+                draw.rectangle(((bbox.left, bbox.top), (bbox.right, bbox.bottom)), outline=color)
+                draw.text((bbox.left, bbox.top), text=f'{category:s} {prob:.4f}', fill=color)
 
-            draw.rectangle(((bbox.left, bbox.top), (bbox.right, bbox.bottom)), outline=color)
-            draw.text((bbox.left, bbox.top), text=f'{category:s} {prob:.4f}', fill=color)
+            image.save(outputname)
+            print(f'Output image save to {outputname}')
 
-        image.save(path_to_output_image)
-        print(f'Output image save to {path_to_output_image}')
-        print(f'FPS = {eval_fps}\n')
+    file_count  = len(os.listdir(path_to_input_image))
+    eval_fps    = file_count*1000000000.0 / (time.time_ns() - start_time)
+    print(f'FPS = {eval_fps:.4f}\n')
 
 if __name__ == '__main__':
     path_to_input_image     = args.input
