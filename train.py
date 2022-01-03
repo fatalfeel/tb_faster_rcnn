@@ -194,8 +194,7 @@ def _train():
 if __name__ == '__main__':
     #prefix = '{}'.format(time.strftime('%Y%m%d%H%M%S'))
     #path_to_checkpoints_dir = os.path.join(args.checkpoint_dir, prefix)
-    if not os.path.exists(args.checkpoint_dir):
-        os.makedirs(args.checkpoint_dir)
+    os.makedirs(args.checkpoint_dir, exist_ok=True)
 
     Config.setup(image_min_side=args.image_min_side,
                  image_max_side=args.image_max_side,
