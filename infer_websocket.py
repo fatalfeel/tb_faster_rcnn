@@ -19,10 +19,10 @@ def str2bool(b_str):
         return False
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--dataset',                type=str,   default='voc2007',      help='name of dataset')
-parser.add_argument('--backbone',               type=str,   default='resnet101',    help='resnet18, resnet50, resnet101')
-parser.add_argument('--checkpoint_dir',         type=str,   default='./checkpoint', help='path to checkpoint')
-parser.add_argument('--probability_threshold',  type=float, default=0.5,            help='threshold of detection probability')
+parser.add_argument('--dataset',                type=str,   default='voc2007',          help='name of dataset')
+parser.add_argument('--backbone',               type=str,   default='resnet101',        help='resnet18, resnet50, resnet101, resnext101_32x8d')
+parser.add_argument('--checkpoint_dir',         type=str,   default='./checkpoint',     help='path to checkpoint')
+parser.add_argument('--probability_threshold',  type=float, default=0.5,                help='threshold of detection probability')
 parser.add_argument('--image_min_side', type=float, help='default: {:g}'.format(Config.IMAGE_MIN_SIDE))
 parser.add_argument('--image_max_side', type=float, help='default: {:g}'.format(Config.IMAGE_MAX_SIDE))
 parser.add_argument('--anchor_ratios',  type=str, help='default: "{!s}"'.format(Config.ANCHOR_RATIOS))
