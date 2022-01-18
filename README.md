@@ -16,8 +16,11 @@
 ## Run
 - python3 ./train.py --cuda True
 - python3 ./train.py --cuda True --resume True
+- python3 ./train.py --backbone resnext101_32x8d --cuda True --resume True
 - python3 ./infer.py --cuda True
+- python3 ./infer.py --backbone resnext101_32x8d --cuda True
 - python3 ./eval.py --cuda True
+- python3 ./eval.py --backbone resnext101_32x8d --cuda True
 
 ## Performance
 - Intel I7-3770K(118US$) + GeForce GTX 1650 4GB(220US$)
