@@ -28,12 +28,13 @@
 - Infer 2.7 frames per second
 
 ## Pretrained download
+- normal resnet101 network training 699 samples at 28 epochs meanAP is 0.7701
+- <img src="images/resnet101_meanap.jpg" width="400px"/>
 - https://drive.google.com/file/d/1cWgVyKYmAA8TxtVWQEdURvKGWK-DnWyt
-- Copy to ./checkpoint & Rename to model-last.pt
-- standard resnet101 network training 699 samples at 28 epochs meanAP is 0.7701
-- <img src="images/meanap.jpg" width="400px"/>
 - resnext101_32x8d network training 699 samples at 31 epochs meanAP is 0.7859
+- <img src="images/resnext101_32x8d_meanap.jpg" width="400px"/>
 - https://drive.google.com/file/d/1KEe3OHhDDGjWa7tqugpTXhcgs924Z5mZ
+- copy to ./checkpoint & Rename to model-last.pt
 
 # Data preparation tutorials
 - You can add [class name] in CATEGORY_TO_LABEL_DICT of voc2007.py
