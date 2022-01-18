@@ -33,10 +33,10 @@
 ## Pretrained download
 - (a)Using resnet101 training 699 samples at 28 epochs meanAP is 0.7701
 - <img src="images/resnet101_meanap.jpg" width="400px"/>
-- download pretrained https://drive.google.com/file/d/1cWgVyKYmAA8TxtVWQEdURvKGWK-DnWyt
+- pretrained file https://drive.google.com/file/d/1cWgVyKYmAA8TxtVWQEdURvKGWK-DnWyt
 - (b)Using resnext101_32x8d training 699 samples at 31 epochs meanAP is 0.7859
 - <img src="images/resnext101_32x8d_meanap.jpg" width="400px"/>
-- download pretrained https://drive.google.com/file/d/1KEe3OHhDDGjWa7tqugpTXhcgs924Z5mZ
+- pretrained file https://drive.google.com/file/d/1KEe3OHhDDGjWa7tqugpTXhcgs924Z5mZ
 - copy to ./checkpoint & Rename to model-last.pt
 
 # Data preparation tutorials
