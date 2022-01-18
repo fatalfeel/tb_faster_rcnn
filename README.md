@@ -30,7 +30,7 @@
 ## Pretrained download
 - https://drive.google.com/file/d/1cWgVyKYmAA8TxtVWQEdURvKGWK-DnWyt
 - Copy to ./checkpoint & Rename to model-last.pt
-- standard resnext101 network training 699 samples at 28 epochs meanAP is 0.7701
+- standard resnet101 network training 699 samples at 28 epochs meanAP is 0.7701
 - <img src="images/meanap.jpg" width="400px"/>
 - resnext101_32x8d network training 699 samples at 31 epochs meanAP is 0.7859
 - https://drive.google.com/file/d/1KEe3OHhDDGjWa7tqugpTXhcgs924Z5mZ
