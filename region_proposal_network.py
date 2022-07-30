@@ -31,11 +31,11 @@ class RegionProposalNetwork(nn.Module):
 
     def forward(self,
                 resnet_features:    Tensor,
-                anchor_gen_bboxes:  Optional[Tensor] = None,
-                gt_bboxes_batch:    Optional[Tensor] = None,
-                image_width:        Optional[int]=None,
-                image_height:       Optional[int]=None) -> Union[Tuple[Tensor, Tensor],
-                                                                 Tuple[Tensor, Tensor, Tensor, Tensor]]:
+                anchor_gen_bboxes:  Optional[Tensor]    = None,
+                gt_bboxes_batch:    Optional[Tensor]    = None,
+                image_width:        Optional[int]       = None,
+                image_height:       Optional[int]       = None) -> Union[Tuple[Tensor, Tensor],
+                                                                         Tuple[Tensor, Tensor, Tensor, Tensor]]:
 
         batch_size          = resnet_features.shape[0]
         rpn_features        = self._rpnconvseq(resnet_features) #features = self._rpnconvseq(resnet_output)
