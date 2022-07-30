@@ -69,8 +69,8 @@ class RegionProposalNetwork(nn.Module):
             anchor_max_ious,anchor_assignments  = torch.max(ious, dim=2) #row max
 
             #anchor_additions = ((ious > 0) & (ious == gt_max_ious.unsqueeze(dim=1))).nonzero()[:, :2].unbind(dim=1)
-            max_ious            = (ious > 0) & (ious == gt_max_ious.unsqueeze(dim=1)) #max value is true, others false
-            anchor_additions    = torch.nonzero(max_ious)[:, :2].unbind(dim=1) #split false part and true part then remain ture part
+            max_ious            = (ious > 0) & (ious == gt_max_ious.unsqueeze(dim=1))   #max value is true, others false
+            anchor_additions    = torch.nonzero(max_ious)[:, :2].unbind(dim=1)          #get dim[0] dim[1] of nonzero array into tuple (dim[0],dim[1])
             labels[anchor_max_ious < 0.3] = 0
             labels[anchor_additions] = 1
             labels[anchor_max_ious >= 0.7] = 1
