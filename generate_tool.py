@@ -133,8 +133,8 @@ class GenerateTool(object):
         threshold = 0.3
         for batch_index in range(batch_size):
             for c in range(1, self.num_classes):
-                class_bboxes = detection_bboxes[batch_index, :, c, :]
-                class_probs = detection_probs[batch_index, :, c]
+                class_bboxes    = detection_bboxes[batch_index, :, c, :]
+                class_probs     = detection_probs[batch_index, :, c]
                 kept_indices    = self.op_nms(class_bboxes, class_probs, threshold)
                 class_bboxes    = class_bboxes[kept_indices]
                 class_probs     = class_probs[kept_indices]
