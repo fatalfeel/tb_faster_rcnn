@@ -27,7 +27,7 @@ class RegionProposalNetwork(nn.Module):
 
         #each anchor is given a positive or negative objectness score based on the Intersection-over-Union (IoU).
         self._anchor_cls_score  = nn.Conv2d(in_channels=512, out_channels=num_anchors * 2, kernel_size=1, stride=1, padding=0) #*2 means positive or negative(bg)
-        self._anchor_bboxdelta  = nn.Conv2d(in_channels=512, out_channels=num_anchors * 4, kernel_size=1, stride=1, padding=0) #*4 means tx,ty,tw,th
+        self._anchor_bboxdelta  = nn.Conv2d(in_channels=512, out_channels=num_anchors * 4, kernel_size=1, stride=1, padding=0) #*4 means dx,dy,dw,dh
 
     def forward(self,
                 resnet_features:    Tensor,
