@@ -24,9 +24,18 @@ class ResNext101_32x8d(object):
         hidden = children[-3]
         num_hidden_out = 2048
 
-        for parameters in [feature.parameters() for i, feature in enumerate(features) if i <= 4]:
+        # from children_00 ~ children_04
+        '''for parameters in [feature.parameters() for i, feature in enumerate(features) if i <= 4]:
             for parameter in parameters:
-                parameter.requires_grad = False
+                parameter.requires_grad = False'''
+
+        for i, feature in enumerate(features):
+            if i <= 4:
+                for parameters in [feature.parameters()]:
+                    for parameter in parameters:
+                        parameter.requires_grad = False
+            else:
+                break
 
         features = nn.Sequential(*features)
 
