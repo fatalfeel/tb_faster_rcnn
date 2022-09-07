@@ -82,7 +82,7 @@ class RegionProposalNetwork(nn.Module):
             fg_indices = (labels == 1).nonzero()
             bg_indices = (labels == 0).nonzero()
             '''
-            fg_indices = torch.nonzero(labels == 1)
+            fg_indices = torch.nonzero(labels > 0)
             bg_indices = torch.nonzero(labels == 0)
 
             #fg_samples = fg_indices[torch.randperm(len(fg_indices))[:min(len(fg_indices), 128 * batch_size)]]
