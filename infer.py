@@ -5,8 +5,8 @@ import time
 import torch
 from dataset.baseobject import DatasetBase
 from backbone.basenet import BackboneBase
-from torchvision.transforms import transforms
-from PIL import ImageDraw
+#from torchvision.transforms import transforms
+from PIL import Image, ImageDraw
 from bbox import BBox
 from model import Model
 #from roi.pooler import Pooler
@@ -57,7 +57,8 @@ def _infer(path_to_input_image: str, path_to_output_image: str, dataset_name: st
         with torch.no_grad():
             inputname           = path_to_input_image + '/' + filename
             outputname          = path_to_output_image + '/' + filename
-            image               = transforms.Image.open(inputname)
+            #image              = transforms.Image.open(inputname)
+            image               = Image.open(inputname)
             image_tensor, scale = dataset_class.preprocess(image, Config.IMAGE_MIN_SIDE, Config.IMAGE_MAX_SIDE)
 
             detection_bboxes, \
