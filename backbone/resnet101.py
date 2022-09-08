@@ -30,7 +30,7 @@ class ResNet101(object):
                 parameter.requires_grad = False'''
 
         for i, feature in enumerate(features):
-            if i <= 4:
+            if i <= 3:
                 for parameters in [feature.parameters()]:
                     for parameter in parameters:
                         parameter.requires_grad = False

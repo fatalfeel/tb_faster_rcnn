@@ -17,8 +17,8 @@ class TrainConfig(Config):
     #WARM_UP_NUM_ITERS: int      = 500
 
     NUM_STEPS_TO_DISPLAY: int   = 20
-    NUM_SAVE_EPOCH_FREQ: int    = 5
-    NUM_EPOCH_TO_FINISH: int    = 35
+    NUM_SAVE_EPOCH_FREQ: int    = 1
+    NUM_EPOCH_TO_FINISH: int    = 50
 
     ANCHOR_SMOOTH_L1_LOSS_BETA: float   = 1.0
     PROPOSAL_SMOOTH_L1_LOSS_BETA: float = 1.0

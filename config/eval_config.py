@@ -2,9 +2,9 @@ from typing import List
 from config.config import Config
 
 class EvalConfig(Config):
-    RPN_PRE_NMS_TOP_N: int  = 6000 #smaller can do faster
+    RPN_PRE_NMS_TOP_N: int  = 12000 #smaller can do faster
     #RPN_POST_NMS_TOP_N: int = 300
-    RPN_POST_NMS_TOP_N: int = 1000 #smaller can do faster
+    RPN_POST_NMS_TOP_N: int = 2000 #smaller can do faster
     BATCH_SIZE: int         = 1
 
     @classmethod
