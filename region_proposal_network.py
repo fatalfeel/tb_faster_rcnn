@@ -84,6 +84,11 @@ class RegionProposalNetwork(nn.Module):
             '''
             fg_indices = torch.nonzero(labels > 0)
             bg_indices = torch.nonzero(labels == 0)
+            ### test only
+            '''fg_indices_xxx = torch.nonzero(labels == 1)
+            for i in range(len(fg_indices_xxx)):
+                if fg_indices[i][1] != fg_indices_xxx[i][1]:
+                    print('error pair')'''
 
             #fg_samples = fg_indices[torch.randperm(len(fg_indices))[:min(len(fg_indices), 128 * batch_size)]]
             #bg_samples = bg_indices[torch.randperm(len(bg_indices))[:256 * batch_size - len(fg_samples)]]
