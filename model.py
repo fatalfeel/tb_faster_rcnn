@@ -27,6 +27,7 @@ class Model(nn.Module):
         '''self._bn_modules = nn.ModuleList([it for it in self.resnet.modules() if isinstance(it, nn.BatchNorm2d)]
                                          +
                                          [it for it in hidden_layer.modules() if isinstance(it, nn.BatchNorm2d)])'''
+
         self._bn_modules = nn.ModuleList()
         for it in self.resnet.modules():
             if isinstance(it, nn.BatchNorm2d):
