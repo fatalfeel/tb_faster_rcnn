@@ -23,9 +23,18 @@ class Model(nn.Module):
         super().__init__()
 
         self.resnet, hidden_layer, num_resnet_features_out, num_hidden_out = backbone.features()
-        self._bn_modules = nn.ModuleList([it for it in self.resnet.modules() if isinstance(it, nn.BatchNorm2d)]
+
+        '''self._bn_modules = nn.ModuleList([it for it in self.resnet.modules() if isinstance(it, nn.BatchNorm2d)]
                                          +
-                                         [it for it in hidden_layer.modules() if isinstance(it, nn.BatchNorm2d)])
+                                         [it for it in hidden_layer.modules() if isinstance(it, nn.BatchNorm2d)])'''
+        self._bn_modules = nn.ModuleList()
+        for it in self.resnet.modules():
+            if isinstance(it, nn.BatchNorm2d):
+                self._bn_modules.append(it)
+
+        for it in hidden_layer.modules():
+            if isinstance(it, nn.BatchNorm2d):
+                self._bn_modules.append(it)
 
         # NOTE: It's crucial to freeze batch normalization modules for few batches training, which can be done by following processes
         #       (1) Change mode to `eval`
