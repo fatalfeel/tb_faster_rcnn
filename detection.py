@@ -103,12 +103,12 @@ class Detection(nn.Module):
             #fg_samples = fg_indices[torch.randperm(len(fg_indices))[:min(len(fg_indices), 32 * batch_size)]]
             #bg_samples = bg_indices[torch.randperm(len(bg_indices))[:128 * batch_size - len(fg_samples)]]
             fg_rand     = torch.randperm(len(fg_indices))           # random number 1~len
-            fg_size     = min(len(fg_indices), 128 * batch_size)    # select min value
+            fg_size     = min(len(fg_indices), 32 * batch_size)     # select min value
             fg_range    = fg_rand[:fg_size]                         # #pick 0~fg_size of random number
             fg_samples  = fg_indices[fg_range]
 
             bg_rand     = torch.randperm(len(bg_indices))
-            bg_size     = 256 * batch_size - len(fg_samples)
+            bg_size     = 128 * batch_size - len(fg_samples)
             bg_range    = bg_rand[:bg_size]
             bg_samples  = bg_indices[bg_range]
 
