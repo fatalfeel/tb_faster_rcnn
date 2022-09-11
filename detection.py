@@ -88,9 +88,8 @@ class Detection(nn.Module):
                 morethan_p5_col     = true_indices[:, 1]
                 #proposal_max_col   = proposal_assignments[fg_masks]                            # if fg_masks is ture then give column index
                 proposal_max_col    = proposal_assignments[morethan_p5_row, morethan_p5_col]    # same as proposal_assignments[fg_masks] but faster
-                gt_match_class      = gt_labels_batch[morethan_p5_row, proposal_max_col]
-                #labels[fg_masks]   = gt_match_class                                            # if fg_masks is ture then give gt_class number
-                labels[morethan_p5_row, morethan_p5_col] = gt_match_class                       # same as labels[fg_masks] but faster
+                #labels[fg_masks]   = gt_labels_batch[morethan_p5_row, proposal_max_col]                      # if fg_masks is ture then give gt_class number
+                labels[morethan_p5_row, morethan_p5_col] = gt_labels_batch[morethan_p5_row, proposal_max_col] # same as labels[fg_masks] but faster
 
             # select 128 x `batch_size` samples
             '''
