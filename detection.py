@@ -99,6 +99,7 @@ class Detection(nn.Module):
             fg_indices  = torch.nonzero(labels > 0) #same as torch.nonzero(fg_masks)
             bg_indices  = torch.nonzero(labels == 0)
 
+            #refer to https://www.lablab.top/post/how-does-faster-r-cnn-work-part-ii/
             #fg_samples = fg_indices[torch.randperm(len(fg_indices))[:min(len(fg_indices), 32 * batch_size)]]
             #bg_samples = bg_indices[torch.randperm(len(bg_indices))[:128 * batch_size - len(fg_samples)]]
             fg_rand     = torch.randperm(len(fg_indices))           # random number 1~len
