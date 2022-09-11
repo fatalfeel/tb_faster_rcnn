@@ -86,7 +86,7 @@ class Detection(nn.Module):
             if len(true_indices) > 0:                                                           # make sure there is true index to process
                 morethan_p5_row     = true_indices[:, 0]                                        # row index
                 morethan_p5_col     = true_indices[:, 1]
-                # proposal_max_col  = proposal_assignments[fg_masks]                            # if fg_masks is ture then give column index
+                #proposal_max_col   = proposal_assignments[fg_masks]                            # if fg_masks is ture then give column index
                 proposal_max_col    = proposal_assignments[morethan_p5_row, morethan_p5_col]    # same as proposal_assignments[fg_masks] but faster
                 gt_match_class      = gt_labels_batch[morethan_p5_row, proposal_max_col]
                 #labels[fg_masks]   = gt_match_class                                            # if fg_masks is ture then give gt_class number
