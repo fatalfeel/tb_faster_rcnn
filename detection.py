@@ -84,12 +84,12 @@ class Detection(nn.Module):
             #    labels[fg_masks] = gt_labels_batch[fg_masks.nonzero()[:, 0], proposal_assignments[fg_masks]]
             true_indices = torch.nonzero(fg_masks)                                              # get row col of ture fg_masks
             if len(true_indices) > 0:                                                           # make sure there is true index to process
-                morethan_p5_row     = true_indices[:, 0]                                        # row index
-                morethan_p5_col     = true_indices[:, 1]
+                morethan_p5_row     = true_indices[:, 0]                                        # more than 0.5 row index
+                morethan_p5_col     = true_indices[:, 1]                                        # more than 0.5 col index
                 #proposal_max_col   = proposal_assignments[fg_masks]                            # if fg_masks is ture then give column index
-                #labels[fg_masks]   = gt_labels_batch[morethan_p5_row, proposal_max_col]        # if fg_masks is ture then give gt_class number
-                proposal_max_col    = proposal_assignments[morethan_p5_row, morethan_p5_col]    # same as proposal_assignments[fg_masks] but faster
-                labels[morethan_p5_row, morethan_p5_col] = gt_labels_batch[morethan_p5_row, proposal_max_col] # same as labels[fg_masks] but faster
+                #labels[fg_masks]   = gt_labels_batch[torch.nonzero(fg_masks)[:, 0], proposal_max_col]          # if fg_masks is ture then give gt_class number
+                proposal_max_col    = proposal_assignments[morethan_p5_row, morethan_p5_col]                    # same as proposal_assignments[fg_masks] but faster
+                labels[morethan_p5_row, morethan_p5_col] = gt_labels_batch[morethan_p5_row, proposal_max_col]   # same as labels[fg_masks] but faster
 
             # select 128 x `batch_size` samples
             '''
