@@ -41,7 +41,7 @@ class Detection(nn.Module):
         self._proposal_boxdelta             = nn.Linear(num_hidden_out, num_classes * 4)
         self._proposal_smooth_l1_loss_beta  = proposal_smooth_l1_loss_beta
         #self.roipooler                      = RoiPooler()
-        self._roialign                      = ops.RoIAlign((7 * 2, 7 * 2), 1 / 16, 0)
+        self._roialign                      = ops.RoIAlign((7 * 2, 7 * 2), 1 / 16, 0, True)
 
         self._detectbox_normalize_mean      = torch.tensor([0.0, 0.0, 0.0, 0.0], dtype=torch.float)
         self._detectbox_normalize_std       = torch.tensor([0.1, 0.1, 0.2, 0.2], dtype=torch.float)
